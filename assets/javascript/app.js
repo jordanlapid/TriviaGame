@@ -95,15 +95,16 @@ var correctAnswer = document.getElementById('correctAnswer');
 var cor = document.getElementById('correct');
 var incor = document.getElementById('incorrect');
 var unans = document.getElementById('unanswered');
+var images = document.getElementById('images');
 var answer = questions[index].answer;
 var selected;
 var clock;
 
-var imagesArray = ["spongebob.jpg","phillil.png","heffer.png","patti.png","mondo.jpg","helga.jpg","aggrocrag.jpg","nickarcade.jpg","alexmack.jpg","harriet.jpg"]
+var imagesArray = ["assets/images/spongebob.jpg","assets/images/phillil.png","assets/images/heffer.png","assets/images/patti.png","assets/images/mondo.jpg","assets/images/helga.jpg","assets/images/aggrocrag.jpg","assets/images/nickarcade.jpg","assets/images/alexmack.jpg","assets/images/harriet.jpg"]
 
 quiz.style.display = "none";
 results.style.display ="none";
-
+images.style.display = "none";
 
 document.getElementById('startButton').onclick = function(){
 	start.style.display ="none";
@@ -116,6 +117,7 @@ document.getElementById('startOver').onclick = function(){
 	quiz.style.display = "block";
 	correctAnswer.innerHTML = "";
 	buttons.style.display = "block";
+	images.style.display = "none";
 	time = 10;
 	correct = 0;
 	incorrect =0;	
@@ -176,6 +178,7 @@ function nextQuestion(){
 	time = 10;
 	startTimer();
 	timer.innerHTML = time;
+	images.style.display = "none";
 	buttons.style.display = "block";
 	index++;
 	question.innerHTML = questions[index].question;
@@ -194,7 +197,8 @@ function checkInput(){
 		buttons.style.display = "none";
 		question.innerHTML = "Correct!"
 		selected = 0;
-		document.getElementById("images").src = 
+		images.style.display = "inline";
+		$("#images").attr("src", imagesArray[index]);
 	} else if (selected != answer && selected != 0) {
 		incorrect++; 
 		waitScreen();
@@ -202,6 +206,8 @@ function checkInput(){
 		correctAnswer.innerHTML = "The correct answer was: " + answer;
 		buttons.style.display = "none";
 		selected = 0;
+		images.style.display = "inline";
+		$("#images").attr("src", imagesArray[index]);
 	} else if (selected === 0 && time === 0) {
 		unanswered++;
 		waitScreen();
@@ -209,6 +215,8 @@ function checkInput(){
 		buttons.style.display = "none";
 		correctAnswer.innerHTML = "The correct answer was: " + answer;
 		selected = 0;
+		images.style.display = "inline";
+		$("#images").attr("src", imagesArray[index]);
 	}
 }
 
