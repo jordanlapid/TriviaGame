@@ -47,6 +47,8 @@ button {
 button:hover {
   border-color:#49d401;
   border-style:solid;
+  color:#49d401;
+  font-weight:bold;
 
 }
 
