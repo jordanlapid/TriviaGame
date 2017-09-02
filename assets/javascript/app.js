@@ -80,7 +80,7 @@ var questions = [{
 	}];
 
 var index = 0;
-var time = 	10;
+var time = 	15;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
@@ -118,7 +118,7 @@ document.getElementById('startOver').onclick = function(){
 	correctAnswer.innerHTML = "";
 	buttons.style.display = "block";
 	images.style.display = "none";
-	time = 10;
+	time = 15;
 	correct = 0;
 	incorrect =0;	
 	unanswered = 0;
@@ -175,7 +175,7 @@ function playGame(){
 }
 
 function nextQuestion(){
-	time = 10;
+	time = 15;
 	startTimer();
 	timer.innerHTML = time;
 	images.style.display = "none";
@@ -223,10 +223,10 @@ function checkInput(){
 function waitScreen(){
 	if(index === questions.length - 1) {
 		clearInterval(clock);
-		setTimeout(displayResults, 2500);
+		setTimeout(displayResults, 3000);
 	} else {
 		clearInterval(clock);
-		setTimeout(nextQuestion, 2500);
+		setTimeout(nextQuestion, 3000);
 	}
 
 }
