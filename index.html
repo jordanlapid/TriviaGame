@@ -3,22 +3,27 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
-
+	
 	<title></title>
 </head>
 <body>
 <div class="container-fluid">
 	<div class ="container">
-		<div class ="header">
-			<h1>Nickelodeon Trivia!</h1>
+		<div class ="jumbotron">
+			<img src="https://fontmeme.com/permalink/170902/820d5ac692bed22089f179f1b08cc22b.png" alt="nickelodeon-font" border="0">
 		</div>
 	</div>
 
 	<div class="container">
+		<div id ="start">	
+			<button id="startButton">Start Game!</button>
+		</div>
 		<div id="quiz">
 			<div class ="questions">
-				<h3>Time Left:<span id="timer">30</span></h3>			
+				<h3>Time Left:<span id="timer">10</span></h3>			
 				<h3 id ="question">Put Question Here</h3>
+				<h3><span id="correctAnswer"></span></h3>
+				<img id="images" src="">
 			</div>
 			<div class="buttons" id ="buttons">
 				<ul>
@@ -28,6 +33,13 @@
 					<li><button id="btn4"><span id ="option4"></span></button></li>
 				</ul>	
 			</div>
+		</div>
+		<div id ="results">
+			<h3>Here's how you did!</h3>
+			<h4>Correct: <span id = "correct"></span></h4>
+			<h4>Incorrect: <span id = "incorrect"></span></h4>
+			<h4>Unanswered: <span id = "unanswered"></span></h4>
+			<button id="startOver">Start Over?</button>
 		</div>
 	</div>
 

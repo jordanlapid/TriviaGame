@@ -58,7 +58,7 @@ var questions = [{
 	question: "What Nickelodeon show involved contestants competing in video game trivia and playing against the Video Game Wizard?",
 	option1: "Nick Arcade",
 	option2: "Game to Fame",
-	option3: "Nick Game Channel",
+	option3: "Nick Game Channel",	
 	option4: "Virtual Challenger",
 	answer: "Nick Arcade",
 	},
@@ -80,7 +80,7 @@ var questions = [{
 	}];
 
 var index = 0;
-var time = 	30;
+var time = 	10;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
@@ -91,12 +91,38 @@ var opt1 = document.getElementById('option1');
 var opt2 = document.getElementById('option2');
 var opt3 = document.getElementById('option3');
 var opt4 = document.getElementById('option4');
+var correctAnswer = document.getElementById('correctAnswer');
+var cor = document.getElementById('correct');
+var incor = document.getElementById('incorrect');
+var unans = document.getElementById('unanswered');
 var answer = questions[index].answer;
 var selected;
+var clock;
+
+var imagesArray = ["spongebob.jpg","phillil.png","heffer.png","patti.png","mondo.jpg","helga.jpg","aggrocrag.jpg","nickarcade.jpg","alexmack.jpg","harriet.jpg"]
+
+quiz.style.display = "none";
+results.style.display ="none";
 
 
-var startTimer = setInterval(decrementTime, 1000);
-startGame(index);
+document.getElementById('startButton').onclick = function(){
+	start.style.display ="none";
+	quiz.style.display = "block";
+	startGame();
+};
+
+document.getElementById('startOver').onclick = function(){
+	results.style.display ="none";
+	quiz.style.display = "block";
+	correctAnswer.innerHTML = "";
+	buttons.style.display = "block";
+	time = 10;
+	correct = 0;
+	incorrect =0;	
+	unanswered = 0;
+	index = 0;
+	startGame();
+};
 
 document.getElementById('btn1').onclick = function(){
 	selected = opt1.innerHTML;
@@ -115,22 +141,30 @@ document.getElementById('btn4').onclick = function(){
 	checkInput();
 };
 
- function decrementTime(){
-	if(time > 0){
-		time--;
-		timer.innerHTML = time;
-	}
-	if (time === 0){
-		clearInterval(startTimer);
-		unanswered++;
-		showResults();
-		question.innerHTML = "Out of Time!"
-		opt1.innerHTML = "The correct answer was: " + answer;
-		buttons.style.display = "none";
-	}
-}
 
 function startGame(){
+	playGame(index);
+	startTimer();
+}
+
+function stopTimer (){
+	clearInterval(timer);
+}
+
+ function startTimer(){
+ 	clock = setInterval(tenSeconds, 1000)
+	 	function tenSeconds(){
+			if (time === 0) {
+				selected = 0;
+				checkInput();
+			} else if(time > 0){
+				time--;
+				timer.innerHTML = time;
+			} 
+		}
+	}
+
+function playGame(){
 	question.innerHTML = questions[index].question;
 	opt1.innerHTML = questions[index].option1;
 	opt2.innerHTML = questions[index].option2;
@@ -139,9 +173,9 @@ function startGame(){
 }
 
 function nextQuestion(){
-	time = 30;
+	time = 10;
+	startTimer();
 	timer.innerHTML = time;
-	setInterval(decrementTime, 1000);
 	buttons.style.display = "block";
 	index++;
 	question.innerHTML = questions[index].question;
@@ -150,30 +184,50 @@ function nextQuestion(){
 	opt3.innerHTML = questions[index].option3;
 	opt4.innerHTML = questions[index].option4;
 	answer = questions[index].answer;
+	correctAnswer.innerHTML = "";
 }
 
 function checkInput(){
 	if(selected === answer){
-		clearInterval(startTimer);
 		correct++;
-		showResults();
+		waitScreen();
+		buttons.style.display = "none";
 		question.innerHTML = "Correct!"
+		selected = 0;
+		document.getElementById("images").src = 
+	} else if (selected != answer && selected != 0) {
+		incorrect++; 
+		waitScreen();
+		question.innerHTML = "Nope!"		
+		correctAnswer.innerHTML = "The correct answer was: " + answer;
 		buttons.style.display = "none";
-	} else if (selected != answer) {
-		clearInterval(startTimer);
-		incorrect++;
-		showResults();
-		question.innerHTML = "Nope!"
-		opt1.innerHTML = "The correct answer was: " + answer;
+		selected = 0;
+	} else if (selected === 0 && time === 0) {
+		unanswered++;
+		waitScreen();
+		question.innerHTML = "Out of Time!"
 		buttons.style.display = "none";
+		correctAnswer.innerHTML = "The correct answer was: " + answer;
+		selected = 0;
+	}
+}
+
+function waitScreen(){
+	if(index === questions.length - 1) {
+		clearInterval(clock);
+		setTimeout(displayResults, 2500);
+	} else {
+		clearInterval(clock);
+		setTimeout(nextQuestion, 2500);
 	}
 
 }
 
-function showResults(){
-
-	setTimeout(nextQuestion, 3500);
-
+function displayResults(){
+	quiz.style.display = "none";
+	start.style.display ="none";
+	results.style.display = "block";
+	cor.innerHTML = correct;
+	incor.innerHTML = incorrect;
+	unans.innerHTML = unanswered;
 }
-
-

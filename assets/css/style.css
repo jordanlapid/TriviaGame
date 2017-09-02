@@ -1,11 +1,45 @@
+body {
+    background-image: url("../images/background.jpg");
+    color:white;
+}
+
+.jumbotron {
+  background-color:white;
+}
+
+
 .container-fluid {
 	text-align:center;
 }
 
-.header{
-	margin: 50px auto 50px auto;
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: solid;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color:white;
+    border-color:white;
+    padding:10px;
+    margin-top: 5px;
 }
 
+#startButton{
+  font-size: 50px;
+  margin-top:50px;
+}
+
+#startOver{
+  font-size: 50px;
+
+}
+
+
+.buttons ul {
+	list-style:none;
+}
 
 .footer {
   position: absolute;
@@ -13,10 +47,7 @@
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
+  background-color: white;
   text-align: center;
-}
-
-.buttons ul {
-	list-style:none;
+  color:#ff6801;
 }
