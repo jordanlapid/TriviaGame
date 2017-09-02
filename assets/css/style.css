@@ -40,6 +40,12 @@ button {
     margin-top: 5px;
 }
 
+button:hover {
+  border-color:#49d401;
+  border-style:solid;
+
+}
+
 #startButton{
   font-size: 50px;
   margin-top:50px;
