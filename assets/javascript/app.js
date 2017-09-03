@@ -68,7 +68,7 @@ var questions = [{
 	option2: "Zoey 101",
 	option3: "The Adventures of Pete and Pete",
 	option4: "The Secret World of Alex Mack",
-	answer: "The Secret World of Alex Mac",
+	answer: "The Secret World of Alex Mack",
 	},
 	{
 	question: "What is the name of the character that kept a Slam Book about all of her friends?",
@@ -123,6 +123,7 @@ document.getElementById('startOver').onclick = function(){
 	incorrect =0;	
 	unanswered = 0;
 	index = 0;
+	answer = questions[index].answer
 	startGame();
 };
 
